@@ -15,4 +15,9 @@
 		<td>{{entry.name}}</td>
 		<td></td>
 	</tr>
+	<tfoot *ngIf="!entries.length">
+		<tr>
+			<td colspan="4" class="text-muted text-center">Sorry, no entries yet!</td>
+		</tr>
+	</tfoot>
 </table>

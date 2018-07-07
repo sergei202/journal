@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { LocalStorageService } from './local-storage.service';
+
 export interface Entry {
 	id: number,
 	date: Date,
@@ -12,17 +14,11 @@ export interface Entry {
 	providedIn: 'root'
 })
 export class EntryService {
-	entries:Entry[] = [];		// In-memory model
+	entries:Entry[];
 
-	constructor() {
-		this.saveEntry({
-			date: new Date(),
-			name: 'First!'
-		});
-		this.saveEntry({
-			date: new Date(),
-			name: 'Second entry'
-		});
+	constructor(private localStorage:LocalStorageService) {
+		this.entries = this.localStorage.get('journalEntries');
+		if(!this.entries) this.entries = [];
 	}
 
 	getEntries():Entry[] {
@@ -38,5 +34,7 @@ export class EntryService {
 			entry.id = this.entries.length+1;
 			this.entries.push(entry);
 		}
+
+		this.localStorage.set('journalEntries', this.entries);
 	}
 }

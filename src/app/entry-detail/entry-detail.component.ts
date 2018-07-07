@@ -20,6 +20,7 @@ export class EntryDetailComponent implements OnInit {
 			};
 		} else {
 			this.entry = this.entryService.getEntry(id);
+			if(!this.entry) this.router.navigate(['/entries']);		// If entry doesn't exist, bail out to EntryList.
 			console.log('entry: %o', this.entry);
 		}
 	}
