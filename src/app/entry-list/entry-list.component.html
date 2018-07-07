@@ -1,0 +1,18 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Date</th>
+			<th>Name</th>
+			<th class="text-right text-success pointer">
+				<i class="fa fa-plus" routerLink="/entries/new"></i>
+			</th>
+		</tr>
+	</thead>
+	<tr class="pointer" *ngFor="let entry of entries" [routerLink]="['/entries', entry.id]"> <!-- routerLink="/entries/{{entry.id}}" -->
+		<td>{{entry.id}}</td>
+		<td>{{entry.date | date}}</td>
+		<td>{{entry.name}}</td>
+		<td></td>
+	</tr>
+</table>

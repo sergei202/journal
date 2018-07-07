@@ -1,0 +1,22 @@
+<form #form="ngForm">
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="form-group">
+				<label>Entry Name</label>
+				<input class="form-control" [(ngModel)]="entry.name" name="name" required>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label>Date</label>
+				<input type="date" class="form-control" [ngModel]="entry.date | date:'yyyy-MM-dd'" (ngModelChange)="entry.date=$event"  name="date" required>
+			</div>
+		</div>
+	</div>
+
+	<textarea class="form-control" [(ngModel)]="entry.notes" name="notes" rows="5"></textarea>
+</form>
+
+<div class="text-center mt-4">
+	<button class="btn btn-primary" (click)="save()" [disabled]="form.invalid || form.pristine">Save</button>
+</div>
